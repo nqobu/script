@@ -1,9 +1,11 @@
 # #####################################################################	#
 #
 #   DESCRIPTION
+#
 #	Commands for acceptance testing
 #
 #   AUTHOR
+#
 #	Zhoujin WU (Z)	< zhoujin.wu AT gmail DOT com >
 #
 #   FILE FORMAT:
