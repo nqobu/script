@@ -1,0 +1,147 @@
+#!/usr/bin/env sh
+# vim:ft=sh ic noet norl nowrap ts=8 sts=4 sw=4:
+:<<:
+# #####################################################################	#
+
+## NAME
+
+log -- a testing logging framework
+
+## HOW TO
+
+  - Make a symbolic link to ``log``.  For example,
+
+	$ ln -s log script
+
+    where the link name, ``script``, is the command for testing.
+
+  - Edit a command file with ``.cmd`` extension and use the previous
+    link name as the filename.  In our case, ``script.cmd``.
+
+    Check ``script.cmd`` and learn more about the ``.cmd`` file format.
+
+  - Run ``script`` and that's all.
+
+## AUTHOR
+
+Zhoujin WU (Z)	< zhoujin.wu AT gmail DOT com >
+
+## HISTORY
+
+Fri Aug  8 08:08:08 AM GMT 2008	@1218182888 (Z)
+: First release
+
+Fri Feb 13 11:31:30 PM GMT 2009	@1234567890 (Z)
+: Update timestamp with ``TZ=GMT date -d @1234567890``
+
+Fri Nov 11 11:11:11 AM GMT 2011	@1321009871 (Z)
+: Bugs fixed
+
+# #####################################################################	#
+
+     This script is copyfree.  Learn more at <http://copyfree.org>
+
+# #####################################################################	#
+:
+# CRC32: 77C23F0B
+
+alias	_ECHO='/usr/bin/echo -e'
+alias	_EXPR='/usr/bin/expr'
+alias	_FGREP='/usr/bin/fgrep'
+alias	_HEAD='/usr/bin/head'
+alias	_PRINTF='/usr/bin/printf'
+alias	_SED='/usr/bin/sed'
+alias	_TEE='/usr/bin/tee'
+alias	_TEST='/usr/bin/test'
+alias	_TPUT='/usr/bin/tput'
+alias	_TR='/usr/bin/tr'
+alias	_YES='/usr/bin/yes'
+
+	prgname="$(/usr/bin/basename $0 .sh)"
+	dirname="$(/usr/bin/dirname $0)"
+	cmdfile="$dirname/$prgname.cmd"
+	logfile="$prgname.log"
+
+# #####################################################################	#
+#   NAME
+#	errout - send $Message to stderr and exit with code $RetCode
+#   SYNOPSIS
+#	errout $RetCode $Message
+#   RETURN VALUE
+#	N/A
+# #####################################################################	#
+errout ()
+{
+2>&1	_ECHO "Fatal: $2"
+	exit $1
+}
+
+# #####################################################################	#
+#   NAME
+#	hrule - draw a horizonal rule across the entire width of the
+#		terminal from the specified character
+#	vrule - draw a vertical 'line` across the entire height of the
+#		terminal from the specified character
+#   SYNOPSIS
+#	hrule [ $chr ]
+#	vrule [ $chr ]
+#   RETURN VALUE
+#	N/A
+# #####################################################################	#
+hrule ()
+{
+:	${COLUMNS:=$(_TPUT cols)}
+	_TEST 80 -lt $COLUMNS && COLUMNS=80
+	_PRINTF %${COLUMNS}s | _TR ' ' ${1:--}
+}
+
+vrule ()
+{
+	_YES ${1:-#} | _HEAD -$(_TPUT lines)
+}
+
+# #####################################################################	#
+
+	_TEST ! -r $cmdfile &&
+	errout 1 "Can not open command description file \"$cmdfile\""
+
+	IFS_=$IFS
+	IFS=":"
+	bar=$(hrule)
+
+	cnt=1
+	_FGREP : $cmdfile |
+	_TR -cd '[[:print:][:space:]]' |
+	_SED -e 's![*&$"`;()<>|\]!\\\\\\&!g' -e "s!'!\\\\\\\'!g" |
+	while read msg cmd
+	do
+		if _TEST $(_EXPR "$msg" : '^[[:space:]]*[^[:space:]]') -ne 0
+		then
+			out=$(eval _ECHO "$msg")
+			_TEST -z "$out" && continue
+
+			_ECHO "$bar"
+			_ECHO "$cnt. $out"
+			_ECHO "$bar"
+
+			cnt=$(_EXPR $cnt + 1)
+		fi
+
+		if _TEST $(_EXPR "$cmd" : '^[[:space:]]*[^[:space:]]') -ne 0
+		then
+			IFS=$IFS_
+			out=$(eval _ECHO "$cmd")
+			if ! _TEST -z "$out"
+			then
+				_ECHO "\$ $out"
+				( eval "$out" )
+				_ECHO
+			fi
+			IFS=":"
+		fi
+	done 2>&1 |
+	_TEE $logfile
+
+	IFS=$IFS_
+
+	exit 0
