@@ -24,6 +24,7 @@
 #		COMMAND without HEADER
 #
 # #####################################################################	#
+# CRC32: 1E0BFB34
 
 #: echo comment
     #: echo comment

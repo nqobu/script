@@ -2,13 +2,14 @@
 #
 #  DESCRIPTION
 #
-#     For system check
+#	For system check
 #
 #  AUTHOR
 #
-#     Zhoujin WU (Z)	< zhoujin.wu AT gmail DOT com >
+#	Zhoujin WU (Z)	< zhoujin.wu AT gmail DOT com >
 #
 # #####################################################################	#
+# CRC32: 848CB1AE
 
   Today						: date
 						: date -u
@@ -76,7 +77,7 @@
 						: ip -4 address show
 #						: sudo lshw -class network
 
-  Gateway					: route -n | awk '/^0.0.0.0/{print $2}' 
+  Gateway					: route -n | awk '/^0.0.0.0/{print $2}'
   Name Server(s)				: cat /etc/resolv.conf | awk '/^nameserver/{print $2}'
 
 # #############################################	#

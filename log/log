@@ -1,41 +1,41 @@
 #!/usr/bin/env sh
-# vim:ft=sh ic noet norl nowrap sw=4 sts=4 ts=8:
+# vim:ft=sh ic noet norl nowrap ts=8 sts=4 sw=4:
 :<<:
 # #####################################################################	#
 
-## NAME
+    NAME
 
-log -- a testing logging framework
+	log -- a testing logging framework
 
-## HOW TO
+    HOW TO
 
-  - Make a symbolic link to ``log``.  For example,
+      - Make a symbolic link to ``log``.  For example,
 
-	$ ln -s log script
+	    $ ln -s log script
 
-    where the link name, ``script``, is the command for testing.
+	where the link name, ``script``, is the command for testing.
 
-  - Create a command file with ``.cmd`` extension and use the previous
-    link name as the filename.  In our case, ``script.cmd``.
+      - Create a command file with ``.cmd`` extension and use the
+	previous link name as the filename.  In our case, ``script.cmd``.
 
-    Check ``script.cmd`` and learn more about the ``.cmd`` file format.
+	Please check ``script.cmd`` to learn more ``.cmd`` file format.
 
-  - Run ``script`` and that's all.
+      - Run ``script`` and that's all.
 
-## AUTHOR
+    AUTHOR
 
-Zhoujin WU (Z)	< zhoujin.wu AT gmail DOT com >
+	Zhoujin WU (Z)	< zhoujin.wu AT gmail DOT com >
 
-## HISTORY
+    HISTORY
 
-Fri Aug  8 08:08:08 AM GMT 2008	@1218182888 (Z)
-: First release
+	Fri Aug  8 08:08:08 AM GMT 2008	@1218182888 (Z)
+	: First release
 
-Fri Feb 13 11:31:30 PM GMT 2009	@1234567890 (Z)
-: Update timestamp with ``TZ=GMT date -d @1234567890``
+	Fri Feb 13 11:31:30 PM GMT 2009	@1234567890 (Z)
+	: Update timestamp with ``TZ=GMT date -d @1234567890``
 
-Fri Nov 11 11:11:11 AM GMT 2011	@1321009871 (Z)
-: Bugs fixed
+	Fri Nov 11 11:11:11 AM GMT 2011	@1321009871 (Z)
+	: Bugs fixed
 
 # #####################################################################	#
 
