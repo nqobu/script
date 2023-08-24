@@ -12,7 +12,8 @@
 #
 #	^\s*HEADER\s*:\s*COMMAND\s*$
 #
-#   But, ...
+#   in addition to
+#
 #	/^\s*$/
 #	/^\s*#/
 #	/^\s*:\s*#/
