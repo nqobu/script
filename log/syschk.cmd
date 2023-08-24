@@ -1,10 +1,12 @@
 # #####################################################################	#
 #
 #  DESCRIPTION
+#
 #     For system check
 #
 #  AUTHOR
-#     Zhoujin Wu (Z)	< zhoujin.wu AT gmail DOT com >
+#
+#     Zhoujin WU (Z)	< zhoujin.wu AT gmail DOT com >
 #
 # #####################################################################	#
 
