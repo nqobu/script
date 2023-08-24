@@ -4,7 +4,7 @@
 #     For system check
 #
 #  AUTHOR
-#     Zhoujin Wu (ZjW)	< z AT narlabs DOT org DOT tw >
+#     Zhoujin Wu (Z)	< zhoujin.wu AT gmail DOT com >
 #
 # #####################################################################	#
 
