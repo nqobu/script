@@ -15,7 +15,7 @@ log -- a testing logging framework
 
     where the link name, ``script``, is the command for testing.
 
-  - Edit a command file with ``.cmd`` extension and use the previous
+  - Create a command file with ``.cmd`` extension and use the previous
     link name as the filename.  In our case, ``script.cmd``.
 
     Check ``script.cmd`` and learn more about the ``.cmd`` file format.
